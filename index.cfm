@@ -46,23 +46,34 @@
                                <div class="form-group"><br>
                                  <label class="control-label col-sm-2"><h3>Candidato:</h4></label><br><br>
                                  <div class="col-sm-10">          
-                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input id= 1 type="radio" name="optradio" value="10" >Option 1</label>
-                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input id= 2 type="radio" name="optradio" value="20">Option 2</label>
-                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="30">Option 3</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="1"> - Candidato 1</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="2"> - Candidato 2</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="3"> - Candidato 3</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="4"> - Candidato 4</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="5"> - Candidato 5</label>
+                                    <label class="radio-inline" style="margin-right:18px; font-size: 18"><input type="radio" name="optradio" value="6"> - Lula</label>
                                  </div>
                                </div><br>
    
                                <div class="form-group">        
                                  <div class="col-sm-offset-2 col-sm-10">
                                    <button type="submit" class="btn btn-default" style="font-size:18; color: black; background-color: green"> CONFIMAR</button>
+                                    
+                                    <cfquery datasource="SINCPROD">
+                                       INSERT INTO INTCOLDFUSION.vot_cipa (MATRICULA_ELEITOR, CANDIDATO, ) VALUES()
+                                    </cfquery>
+                                   
+                                   <cfif isDefined("url.optradio")>
+                                     <cfoutput>
+                                        <button class="btn btn-default" style="font-size:18; color: black; background-color: aquamarine; width: 10cm" > VOTO CONFIRMADO EM #URL.OPTRADIO#</button>
+                                        <meta http-equiv="refresh" content="1.5; URL=index.cfm"/>
+                                     </cfoutput>
+                                   </cfif>
                                  </div>
                                </div>
                              </form>
                            </div>
-                           
-                           
-                           <cfoutput>#url.optradio#</cfoutput>
-                           
+   
                         </body>
                      </div>
                   </div>
