@@ -1,10 +1,15 @@
+<cfset total=0>
+<cfquery name="resultados" datasource="SINCPROD">
+   select data_meta candidato, count(*) votos from intcoldfusion.metas group by data_meta
+</cfquery>
+
 <cfoutput>
    <html lang="pt">
       <head>
          <!-- Required meta tags -->
          <meta charset="utf-8">
          <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-         <title>CAOATEC - Dashboard Produção</title>
+         <title>CAOATEC - Dashboard Resultados</title>
          <!-- plugins:css -->
          <link rel="stylesheet" href="../../assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
          <link rel="stylesheet" href="../../assets/vendors/iconfonts/ionicons/css/ionicons.css">
@@ -22,7 +27,22 @@
          <link rel="stylesheet" href="../../assets/css/demo_1/style.css?v=3">
          <!-- End Layout styles -->
          <link rel="shortcut icon" href="../../assets/images/favicon.png" />
-      </head></cfoutput>
+
+         <style>
+            h5{
+               margin-left: 23cm; 
+               background-color: green; 
+               text-align: center;
+               border-radius: 5px;
+               font-size: 18;
+               font-style: unset;
+               color: white;
+            }
+            
+         </style>
+
+      </head>
+</cfoutput>
       <body>
          <div class="container-scroller">
   
@@ -32,11 +52,12 @@
                   <!-- Page Title Header Starts-->
                   <div class="row page-title-header">
                      <div class="col-12">
-                       <img src="CAOATEC.png" alt="logo" style="height:10%;"/>
+                        <img src="CAOATEC.png" alt="logo" style="height:0.4%;"/>
+                        <a style="margin-left: 28cm" href="index.cfm">Votar</a>
 
                           <div class="container"><br><br>
-                            <h1>Votação CIPA</h1><br>
-                            <label class="control-label col-sm-2"><h3>Resultados:</h4></label>
+                            <h1>Resultados CIPA</h1><br><br>
+                            <label class="control-label col-sm-2"><h3>Acompanhamento:</h4></label>
                             
                               <table class="table table-striped table-hover">
                                  <thead>
@@ -46,36 +67,30 @@
                                   </tr>
                                  </thead>
                                  <tbody>
-                                  <cfloop query="prod">
+                                 <cfoutput>
+                                  <cfloop query="resultados">
                                      <tr>
-                                       <td>#prod.Codigo#</td>
-                                       <td>#prod.Nome#</td>
-                                       <td>#prod.Segundo_Nome#</td>
-                                       <td>#prod.Planta#</td>
-                                       <td>#prod.Cod_Tipo_Prod#</td>
-                                       <td>#prod.Tipo_Prod#</td>
-                                       <td>#prod.IDUnit1#</td>
-                                       <td>#prod.Habilitado#</td>
+                                       <td>#resultados.candidato#</td>
+                                       <td>#resultados.votos#</td>
                                      </tr>
+                                     <cfset total=total+ #resultados.votos#>
                                   </cfloop>
-                                  <div class="row">
-                                     <p class="card-description">
-                                     <i class="mdi mdi-brightness-1 text-danger">--</i>
-                                     </i ><strong>Total Produtos: <cfoutput>#total.total#</strong></cfoutput>  
-                                     </p>
-                                  </div>
-                                 </tbody>
-                               </table>
-                          </div>
-  
-                       </body>
-                    </div>
-                 </div>
-              </div>
-           </div>
-        </div>
-     </body>
-  </html>   
+                     
+                                    <h5><strong>Total Votos:  #total#</strong></h5>
 
+                                 </cfoutput>
+                                 </tbody>
+                              </table>
+                           </div>
+                     </div> </body>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </body>
+   </html> 
+
+<meta http-equiv="refresh" content="20, URL=result.cfm">
 
              
