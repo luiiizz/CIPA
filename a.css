@@ -1,3 +1,31 @@
 a{
     background-color:aquamarine;
 }
+
+label{
+    border-radius: 5;
+    font-weight: sas;
+    background-color:rgb(
+        
+    ) ;
+    text-decoration:whitesmoke;
+    border-color: aqua;
+    border: 2px;
+    text-align-last: auto;
+    text-align: justify;
+    color:rgb(1, 1, 115)
+
+
+}
+
+input{
+    border-radius: ;
+}
+
+h5{
+    text-decoration: ;
+}
+
+a{
+    margin-left: ;
+}
