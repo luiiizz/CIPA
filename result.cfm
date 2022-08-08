@@ -3,6 +3,8 @@
    select candidato, count(*) votos from intcoldfusion.vot_cipa group by candidato order by votos desc
 </cfquery>
 
+<cfspreadsheet  action="write" query="resultados" filename="Resultados_CIPA.xls" sheetname="Resultados" overwrite=true>
+
 <cfoutput>
    <html lang="pt">
       <head>
@@ -52,10 +54,12 @@
                   <!-- Page Title Header Starts-->
                   <div class="row page-title-header">
                      <div class="col-12">
-                        <img src="CAOATEC.png" alt="logo" style="height:15%;"/>
-                        <a style="margin-left: 28cm" href="index.cfm">Votar</a>
-
+                        <img src="CAOATEC.png" alt="logo" style="height:10%;"/>
+                  
+                        <a style="margin: 30cm" href="index.cfm">Votar</a>
+        
                           <div class="container"><br><br>
+                           
                             <h1>Resultados CIPA</h1><br><br>
                             <label class="control-label col-sm-2"><h3>Acompanhamento:</h4></label>
                             
@@ -70,13 +74,16 @@
                                  <cfoutput>
                                   <cfloop query="resultados">
                                      <tr>
-                                       <td>#resultados.candidato#</td>
-                                       <td>#resultados.votos#</td>
+                                       <div class="linha">
+                                          <td>#resultados.candidato#</td>
+                                          <td>#resultados.votos#</td>
+                                       </div>
                                      </tr>
                                      <cfset total=total+ #resultados.votos#>
                                   </cfloop>
                      
                                     <h5><strong>Total Votos:  #total#</strong></h5>
+                                    <strong><a style="margin: 25.5cm; color: black; text-decoration: underline" href="Resultados_CIPA.xls">Download</a></strong>
 
                                  </cfoutput>
                                  </tbody>
@@ -91,6 +98,6 @@
       </body>
    </html> 
 
-<meta http-equiv="refresh" content="20, URL=result.cfm">
+<meta http-equiv="refresh" content="5, URL=result.cfm">
 
              
