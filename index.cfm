@@ -61,13 +61,13 @@
    
              <!-- partial -->
              <div class="main-panel">
-                <div class="content-wrapper" style="height: 20cm">
+                <div class="content-wrapper">
                    <!-- Page Title Header Starts-->
                    <div class="row page-title-header">
                       <div class="col-12">
-                        <img src="CAOATEC.png" alt="logo" style="height:15%;"/>
-                        <a style="margin-left: 28cm" href="result.cfm">Resultados</a>
-                           <div class="container"><br><br>
+                        <img src="CAOATEC.png" alt="logo" style="height:10%;"/>
+                        <a style="margin-left: 30cm" href="result.cfm">Resultados</a>
+                           <div class="container"><br>
                              <h1>Votação CIPA</h1><br>
                              <form class="form-horizontal" action="index.cfm">
                                <div class="form-group">
@@ -95,20 +95,28 @@
                                    <cfif not isDefined('url.candidato')>
                                        <button type="reset" class="btn btn-default" style="font-size:18; color: black; background-color: RED; margin-left: 8px"> ANULAR</button>
                                     </cfif>
-                                    <cfset data_hora = lsDateTimeFormat(now(), "dd/mm/yy HH:mm:ss")>
+                                    <cfset data_hora = now()>
                                
-                                    <!---
-                                    <cfquery datasource="SINCPROD">
-                                       INSERT INTO INTCOLDFUSION.vot_cipa (MATRICULA_ELEITOR, CANDIDATO, DATA_HORA) VALUES('#url.matricula#','#url.candidato#','#data_hora#')
-                                    </cfquery>
-                                    --->
-                                   
-                                   <cfif isDefined("url.candidato")>
-                                     <cfoutput>
-                                        <button class="btn btn-default" style="font-size:18; color: black; background-color: aquamarine; width: 10cm; margin-left: 3cm" > VOTO CONFIRMADO NO CANDIDATO #URL.candidato#</button>
-                                        <meta http-equiv="refresh" content="1.5; URL=index.cfm"/>
-                                     </cfoutput>
-                                   </cfif>
+                                    <cfif isDefined("url.matricula")>
+                                       <cftry>
+
+                                          <cfquery datasource="SINCPROD">
+                                             INSERT INTO INTCOLDFUSION.vot_cipa (MATRICULA_ELEITOR, CANDIDATO, DATA_HORA) VALUES(#url.matricula#,#url.candidato#,#data_hora#)
+                                          </cfquery>
+                                          <cfoutput>
+                                             <button class="btn btn-default" style="font-size:18; color: black; background-color: aquamarine; width: 10cm; margin-left: 3cm" > VOTO CONFIRMADO NO CANDIDATO #URL.candidato#</button>
+                                             <meta http-equiv="refresh" content="1.8; URL=index.cfm"/>
+                                          </cfoutput>
+
+                                       <cfcatch type="any">
+                                          <cfoutput>
+                                             <button class="btn btn-default" style="font-size:18; color: black; background-color: RED; width: 10cm; margin-left: 3cm" > DIGITE OUTRA MATRICULA OU CONTATE O ADM DO SISTEMA</button>
+                                             <meta http-equiv="refresh" content="2; URL=index.cfm"/>
+                                          </cfoutput>
+                                       </cfcatch>
+                                       </cftry>
+                                       
+                                    </cfif>
                                  </div>
                                </div>
                              </form>

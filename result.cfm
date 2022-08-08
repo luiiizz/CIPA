@@ -1,6 +1,6 @@
 <cfset total=0>
 <cfquery name="resultados" datasource="SINCPROD">
-   select data_meta candidato, count(*) votos from intcoldfusion.metas group by data_meta
+   select candidato, count(*) votos from intcoldfusion.vot_cipa group by candidato order by votos desc
 </cfquery>
 
 <cfoutput>
@@ -52,7 +52,7 @@
                   <!-- Page Title Header Starts-->
                   <div class="row page-title-header">
                      <div class="col-12">
-                        <img src="CAOATEC.png" alt="logo" style="height:0.4%;"/>
+                        <img src="CAOATEC.png" alt="logo" style="height:15%;"/>
                         <a style="margin-left: 28cm" href="index.cfm">Votar</a>
 
                           <div class="container"><br><br>
